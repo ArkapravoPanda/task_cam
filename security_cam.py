@@ -2,7 +2,18 @@ import cv2, time, os
 from playsound import playsound
 import threading
 
-cam = cv2.VideoCapture(0 or 1)
+def testDevice(source):
+   cam = cv2.VideoCapture(source) 
+   if cam is None or not cam.isOpened():
+       print('Warning: unable to open video source: ', source)
+       return source
+
+#Saves the incorrect device number to a. Then we do not(a) to find
+#the correct device number
+a = testDevice(0)
+a = testDevice(1)
+
+cam = cv2.VideoCapture(int(not(a)))
 while cam.isOpened():
     ret, frame1 = cam.read()
     ret, frame2 = cam.read()
@@ -26,4 +37,3 @@ while cam.isOpened():
         break
     cv2.imshow('Task Cam-press q to stop', frame1)
     time.sleep(0.2)
-  
