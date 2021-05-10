@@ -2,7 +2,7 @@ import cv2, time, os
 from playsound import playsound
 import threading
 
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(0 or 1)
 while cam.isOpened():
     ret, frame1 = cam.read()
     ret, frame2 = cam.read()
@@ -19,10 +19,11 @@ while cam.isOpened():
         x, y, w, h = cv2.boundingRect(c)
         cv2.rectangle(frame1, (x,y), (x+w, y+h), (0, 255, 0), 2)
 
-        threading.Thread(target=playsound, args=('sms-alert-1-daniel_simon.mp3',), daemon=True).start()
+        threading.Thread(target=playsound, args=('alert.wav',), daemon=True).start()
+       
 
     if cv2.waitKey(10) == ord('q'):
         break
-    cv2.imshow('Task Cam', frame1)
+    cv2.imshow('Task Cam-press q to stop', frame1)
     time.sleep(0.2)
   
