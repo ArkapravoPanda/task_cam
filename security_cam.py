@@ -8,8 +8,8 @@ def testDevice(source):
        print('Warning: unable to open video source: ', source)
        return source
 
-#Saves the incorrect device number to a. Then we do not(a) to find
-#the correct device number
+# Saves the incorrect device number to a. Then we do "not(a)" to find
+# the correct device number.
 a = testDevice(0)
 a = testDevice(1)
 
